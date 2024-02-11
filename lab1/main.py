@@ -1,6 +1,5 @@
 import numpy as np
 
-
 if __name__ == '__main__':
     n = int(input("Square matrix size: "))
 
@@ -8,11 +7,10 @@ if __name__ == '__main__':
     x = np.random.randint(-10, 10, size=(n,))
 
     i = int(input("Index of the matrix column to replace: "))
-    assert(i < n)
+    assert (i < n)
 
-    A_dash = A.copy().T
-    A_dash[i] = x
-    A_dash = A_dash.T
+    A_dash = A.copy()
+    A_dash[:, i] = x
     A_inv = np.linalg.inv(A)
 
     l = A_inv @ x
@@ -26,9 +24,7 @@ if __name__ == '__main__':
     l_hat = (-1 / l[i]) * l_wave
 
     Q = np.eye(n)
-    Q = Q.T
-    Q[i] = l_hat
-    Q = Q.T
+    Q[:, i] = l_hat
 
     A_dash_inv = Q @ A_inv
 
