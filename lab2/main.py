@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def simplex_method(c, x, A, b, B):
+def simplex_main(c, x, A, b, B):
     m, n = A.shape
     x_new = x.copy()
 
@@ -24,7 +24,7 @@ def simplex_method(c, x, A, b, B):
         # Step 5
         if np.all(delta >= 0):
             assert np.all(A @ x == b)
-            return x_new
+            return x_new, B
 
         # Step 6
         j0 = np.where(delta < 0)[0][0]
@@ -69,6 +69,6 @@ if __name__ == '__main__':
     b = np.array([1, 3, 2])
     B = np.array([2, 3, 4])
 
-    result = simplex_method(c, x, A, b, B)
+    result = simplex_main(c, x, A, b, B)
 
-    print("Optimal plan is", result)
+    print("Optimal plan is: ", *result, sep="\n")
