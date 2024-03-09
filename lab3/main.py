@@ -22,7 +22,7 @@ def simplex_init(c, A, b):
 
     # Step 5
     if np.any(x_tilde[n:n+m] != 0):
-        raise ValueError("The task is not unsolvable!")
+        raise ValueError("The task is unsolvable!")
 
     # Step 6
     x = x_tilde[0:n]
